@@ -17,7 +17,7 @@ function App() {
       <DottedSurface />
       <NavBar items={navItems} />
       <div className="app-content relative flex min-h-svh flex-col">
-        <main className="flex flex-1 flex-col items-center justify-center px-6 text-center">
+        <main className="flex flex-1 flex-col items-center justify-center px-6 pt-24 sm:pt-32 text-center">
           <div className="max-w-4xl">
             <h1 className="font-black text-white text-4xl sm:text-6xl lg:text-7xl leading-tight tracking-tight">
               Design the <span className="text-[#9A9A9A]">Future</span>
