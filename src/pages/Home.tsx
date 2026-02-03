@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { DottedSurface } from "../components/ui/dotted-surface";
 import { Footer } from "../components/ui/footer-section";
 import { NavBar } from "../components/ui/tubelight-navbar";
@@ -8,9 +9,11 @@ import { motion } from "framer-motion";
 import { Timeline } from "../components/ui/timeline";
 import { Gallery4 } from "../components/ui/gallery4";
 import { ABOUT, SERVICES, PORTFOLIO } from "../data/services";
+import { StarButton } from "../components/ui/star-button";
 
 export default function Home() {
   const [scrambleDone, setScrambleDone] = useState(false);
+  const navigate = useNavigate();
 
   const navItems = [
     { name: "Home", url: "#home", icon: HomeIcon },
@@ -60,54 +63,21 @@ export default function Home() {
                 </p>
               </div>
 
-              <motion.section
-                className="w-full rounded-3xl border border-white/10 bg-white/5 px-6 py-8 text-left backdrop-blur lg:col-start-1"
+              <motion.div
+                className="w-full lg:col-start-2 lg:row-start-2 flex justify-end items-center py-8 pr-36 lg:pr-58"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
               >
-                <p className="text-sm uppercase tracking-[0.3em] text-white/60">
-                  Our Expertise
-                </p>
-                <h2 className="mt-3 text-2xl font-semibold text-white">
-                  Let's Create Something Exceptional Together.
-                </h2>
-                <ul className="mt-6 grid gap-3 text-sm text-white/80 sm:grid-cols-2">
-                  <li className="flex items-start gap-2">
-                    <span className="text-white font-black">•</span>
-                    End-to-End Software Development
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-white font-black">•</span>
-                    Modern Websites Built for Scale
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-white font-black">•</span>
-                    iOS &amp; Android Mobile Applications
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-white font-black">•</span>
-                    User-Centered UX/UI Design
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-white font-black">•</span>
-                    Product Leadership &amp; Roadmapping
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-white font-black">•</span>
-                    Long-Term Maintenance &amp; Optimization
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-white font-black">•</span>
-                    Enterprise-Grade Architecture &amp; Systems
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="text-white font-black">•</span>
-                    Branding That Feels Digital-First
-                  </li>
-                </ul>
-              </motion.section>
+                <StarButton
+                  lightColor="#FAFAFA"
+                  className="rounded-full w-44 h-44 text-xl font-bold"
+                  onClick={() => navigate("/contact")}
+                >
+                  Contact Us
+                </StarButton>
+              </motion.div>
 
               {/* TODO: Re-enable Timeline section later
               <motion.aside
