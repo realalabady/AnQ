@@ -68,8 +68,11 @@ export const ABOUT = {
   ],
   values: [
     { word: "Automation", tagline: "Technology that eliminates friction" },
-    { word: "Simplicity", tagline: "Complex solutions, simple interfaces" },
-    { word: "Impact", tagline: "Software that actually helps" },
+    { word: "Nexus", tagline: "The bridge between business and technology" },
+    {
+      word: "Quantum",
+      tagline: "futuristic, high-performance, next-level tech",
+    },
   ],
   closing: "ANQ — Engineering the systems behind progress.",
 };

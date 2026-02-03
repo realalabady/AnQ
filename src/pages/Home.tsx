@@ -115,6 +115,7 @@ export default function Home() {
                 </ul>
               </motion.section>
 
+              {/* TODO: Re-enable Timeline section later
               <motion.aside
                 className="w-full rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur lg:col-start-2 lg:row-start-2"
                 initial={{ opacity: 0, y: 16 }}
@@ -251,6 +252,7 @@ export default function Home() {
                   ]}
                 />
               </motion.aside>
+              */}
             </div>
           </div>
         </main>
@@ -283,7 +285,7 @@ export default function Home() {
                 </p>
               ))}
             </div>
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
               {ABOUT.values.map((v) => (
                 <div
                   key={v.word}
@@ -315,13 +317,13 @@ export default function Home() {
             <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
               Our <span className="text-[#9A9A9A]">Services</span>
             </h2>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-12 flex flex-wrap justify-center gap-6">
               {SERVICES.map((service, idx) => {
                 const Icon = service.icon;
                 return (
                   <motion.div
                     key={service.title}
-                    className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition-colors hover:border-white/20 hover:bg-white/10"
+                    className="group w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition-colors hover:border-white/20 hover:bg-white/10"
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
