@@ -2,17 +2,11 @@ import { useState } from "react";
 import { DottedSurface } from "../components/ui/dotted-surface";
 import { Footer } from "../components/ui/footer-section";
 import { NavBar } from "../components/ui/tubelight-navbar";
-import {
-  Briefcase,
-  Home as HomeIcon,
-  User,
-  Wrench,
-  Mail,
-  ExternalLink,
-} from "lucide-react";
+import { Briefcase, Home as HomeIcon, User, Wrench, Mail } from "lucide-react";
 import { TextScramble } from "../components/ui/text-scramble";
 import { motion } from "framer-motion";
 import { Timeline } from "../components/ui/timeline";
+import { Gallery4 } from "../components/ui/gallery4";
 import { ABOUT, SERVICES, PORTFOLIO } from "../data/services";
 
 export default function Home() {
@@ -350,59 +344,13 @@ export default function Home() {
         </section>
 
         {/* Portfolio/Work Section */}
-        <section id="work" className="px-6 py-24 sm:py-32">
-          <motion.div
-            className="mx-auto max-w-4xl"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
-            <p className="text-sm uppercase tracking-[0.3em] text-white/60">
-              Featured Work
-            </p>
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-              Our <span className="text-[#9A9A9A]">Portfolio</span>
-            </h2>
-            <div className="mt-12 space-y-8">
-              {PORTFOLIO.map((project, idx) => (
-                <motion.a
-                  key={project.id}
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group block rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur transition-all hover:border-white/20 hover:bg-white/10"
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{
-                    duration: 0.5,
-                    ease: "easeOut",
-                    delay: idx * 0.15,
-                  }}
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <h3 className="text-2xl font-bold text-white group-hover:text-primary transition-colors">
-                        {project.title}
-                      </h3>
-                      <p className="text-sm text-white/50 mt-1">
-                        {project.subtitle}
-                      </p>
-                      <p className="mt-3 text-white/60 leading-relaxed">
-                        {project.description}
-                      </p>
-                    </div>
-                    <ExternalLink
-                      size={20}
-                      className="shrink-0 text-white/40 transition-colors group-hover:text-primary"
-                    />
-                  </div>
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-        </section>
+        <div id="work">
+          <Gallery4
+            title="Our Portfolio"
+            description="Explore the digital solutions we've crafted for our clients."
+            items={PORTFOLIO}
+          />
+        </div>
 
         <div className="mt-auto pt-12">
           <Footer />

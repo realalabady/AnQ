@@ -38,7 +38,7 @@ function MessageDisplay() {
           changed, or is temporarily unavailable.
         </div>
         <div className="flex gap-6 mt-8">
-          <button className="bg-black text-white border-2 border-black/60 hover:bg-black/90 transition-all duration-300 ease-in-out px-6 py-2 h-auto text-base font-medium flex items-center gap-2 hover:scale-105">
+          <button className="group bg-black text-white border-2 border-black/60 hover:bg-black/90 transition-all duration-300 ease-in-out px-6 py-2 h-auto text-base font-medium flex items-center gap-2 hover:scale-105">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -49,14 +49,14 @@ function MessageDisplay() {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="transition-transform group-hover:translate-x-1"
+              className="text-blue-400 transition-transform group-hover:-translate-x-1"
             >
               <path d="m12 19-7-7 7-7" />
               <path d="M19 12H5" />
             </svg>
             Go Back
           </button>
-          <button className="bg-black text-white hover:bg-black/90 transition-all duration-300 ease-in-out px-6 py-2 h-auto text-base font-medium flex items-center gap-2 hover:scale-105">
+          <button className="group bg-black text-white hover:bg-black/90 transition-all duration-300 ease-in-out px-6 py-2 h-auto text-base font-medium flex items-center gap-2 hover:scale-105">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -67,7 +67,7 @@ function MessageDisplay() {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="transition-transform group-hover:translate-x-1"
+              className="text-blue-400 transition-transform group-hover:scale-110"
             >
               <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
               <polyline points="9 22 9 12 15 12 15 22" />

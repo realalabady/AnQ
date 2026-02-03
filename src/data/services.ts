@@ -48,12 +48,47 @@ export const PORTFOLIO = [
   {
     id: "link",
     title: "Link",
-    subtitle: "Freelancer Services Platform",
     description:
       "A platform connecting freelance service providers with clients. Streamlined discovery, communication, and collaboration.",
-    url: "https://link-five-cyan.vercel.app/",
+    href: "https://link-five-cyan.vercel.app/",
     image:
       "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    id: "fintrack",
+    title: "FinTrack",
+    description:
+      "Personal finance dashboard with real-time analytics, budget tracking, and AI-powered spending insights.",
+    href: "#",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    id: "medconnect",
+    title: "MedConnect",
+    description:
+      "Healthcare appointment scheduling system with telemedicine integration and patient management.",
+    href: "#",
+    image:
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    id: "urbanflow",
+    title: "UrbanFlow",
+    description:
+      "Smart city logistics platform optimizing delivery routes and reducing carbon footprint for urban businesses.",
+    href: "#",
+    image:
+      "https://images.unsplash.com/photo-1494522855154-9297ac14b55f?q=80&w=800&auto=format&fit=crop",
+  },
+  {
+    id: "eduverse",
+    title: "EduVerse",
+    description:
+      "Interactive e-learning platform with gamification, progress tracking, and personalized learning paths.",
+    href: "#",
+    image:
+      "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=800&auto=format&fit=crop",
   },
 ];
 
