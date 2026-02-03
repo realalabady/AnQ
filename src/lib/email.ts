@@ -1,5 +1,3 @@
-import { COMPANY } from "@/data/services";
-
 export type ContactFormData = {
   name: string;
   email: string;
@@ -8,48 +6,23 @@ export type ContactFormData = {
   message: string;
 };
 
+const API_URL = import.meta.env.DEV
+  ? "http://localhost:3001/api/send-email"
+  : "/api/send-email";
+
 export async function sendContactEmail(data: ContactFormData) {
-  const apiKey = import.meta.env.VITE_RESEND_API_SECRET;
-
-  if (!apiKey) {
-    throw new Error("Email service not configured");
-  }
-
-  const response = await fetch("https://api.resend.com/emails", {
+  const response = await fetch(API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
     },
-    body: JSON.stringify({
-      from: "onboarding@resend.dev",
-      to: COMPANY.email,
-      subject: `New inquiry from ${data.name} — ${data.service}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${escapeHtml(data.name)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(data.email)}</p>
-        ${data.phone ? `<p><strong>Phone:</strong> ${escapeHtml(data.phone)}</p>` : ""}
-        <p><strong>Service:</strong> ${escapeHtml(data.service)}</p>
-        <hr />
-        <p><strong>Message:</strong></p>
-        <p style="white-space: pre-wrap;">${escapeHtml(data.message)}</p>
-      `,
-    }),
+    body: JSON.stringify(data),
   });
 
   if (!response.ok) {
     const err = await response.json();
-    throw new Error(err.message || "Failed to send");
+    throw new Error(err.message || err.error || "Failed to send");
   }
 
   return response.json();
-}
-
-function escapeHtml(str: string) {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
 }
