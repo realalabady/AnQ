@@ -34,11 +34,6 @@ export default function Contact() {
           </p>
 
           <ContactForm />
-
-          <div className="mt-10 pt-8 border-t border-white/10 text-center text-white/50 text-sm">
-            <p>{COMPANY.phone}</p>
-            <p>{COMPANY.email}</p>
-          </div>
         </motion.div>
       </div>
     </>

@@ -7,6 +7,8 @@ import { SERVICES, COMPANY } from "@/data/services";
 import { sendContactEmail, type ContactFormData } from "@/lib/email";
 import { cn } from "@/lib/utils";
 import { CheckCircle, X } from "lucide-react";
+import { ServiceSelect } from "@/components/ui/service-select";
+import { Controller } from "react-hook-form";
 
 function SuccessModal({ onClose }: { onClose: () => void }) {
   return (
@@ -72,8 +74,12 @@ export function ContactForm({ className }: { className?: string }) {
     register,
     handleSubmit,
     reset,
+    watch,
+    control,
     formState: { errors },
   } = useForm<ContactFormData>();
+
+  const selectedService = watch("service");
 
   const onSubmit = async (data: ContactFormData) => {
     setStatus("sending");
@@ -129,35 +135,45 @@ export function ContactForm({ className }: { className?: string }) {
         <div>
           <input
             type="tel"
-            placeholder="Phone (optional)"
-            {...register("phone")}
-            className={inputClass}
+            placeholder="Phone number"
+            {...register("phone", { required: true, minLength: 10 })}
+            className={cn(inputClass, errors.phone && "border-red-500/50")}
             disabled={status === "sending"}
           />
         </div>
 
-        <div>
-          <select
-            {...register("service", { required: true })}
-            className={cn(inputClass, "appearance-none cursor-pointer")}
-            disabled={status === "sending"}
-          >
-            <option value="" className="bg-black">
-              Select a service
-            </option>
-            {SERVICES.map((s) => (
-              <option key={s.id} value={s.title} className="bg-black">
-                {s.title}
-              </option>
-            ))}
-          </select>
+        <div className="relative">
+          <Controller
+            name="service"
+            control={control}
+            rules={{ required: true }}
+            render={({ field }) => (
+              <ServiceSelect
+                value={field.value || ""}
+                onChange={field.onChange}
+                disabled={status === "sending"}
+              />
+            )}
+          />
+          {errors.service && (
+            <p className="text-red-400 text-sm mt-2">
+              Please select a service.
+            </p>
+          )}
         </div>
 
         <div>
           <textarea
-            placeholder="Tell us about your project..."
+            placeholder={
+              selectedService === "Other"
+                ? "Please describe what you need (required)..."
+                : "Tell us about your project..."
+            }
             rows={5}
-            {...register("message", { required: true, minLength: 10 })}
+            {...register("message", {
+              required: selectedService === "Other",
+              minLength: selectedService === "Other" ? 15 : undefined,
+            })}
             className={cn(
               inputClass,
               "resize-none",
@@ -183,15 +199,28 @@ export function ContactForm({ className }: { className?: string }) {
           {status === "sending" ? "Sending..." : "Send Message"}
         </motion.button>
 
-        <p className="text-center text-white/40 text-sm pt-2">
-          Or email us at{" "}
+        <div className="flex flex-col items-center pt-4 gap-2">
+          <span className="text-white text-lm mb-6">
+            or reach out to us through Whatsup
+          </span>
           <a
-            href={`mailto:${COMPANY.email}`}
-            className="text-white/70 hover:text-white"
+            href="https://wa.me/966511567407"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex w-full justify-center items-center gap-2 px-6 py-2 rounded-xl bg-[hsl(var(--primary))] hover:bg-[hsl(var(--primary)/.85)] !text-black font-semibold text-base shadow transition focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            aria-label="Chat with us on WhatsApp"
           >
-            {COMPANY.email}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 32 32"
+              fill="black"
+              className="w-5 h-5"
+            >
+              <path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.832 4.584 2.236 6.37L4.062 29.25a1 1 0 0 0 1.312 1.312l7.88-2.174A12.94 12.94 0 0 0 16 27c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 22c-1.77 0-3.44-.46-4.89-1.26l-.35-.2-4.68 1.29 1.29-4.68-.2-.35A9.96 9.96 0 0 1 6 15c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm5.29-7.71c-.29-.15-1.71-.84-1.98-.94-.27-.1-.47-.15-.67.15-.2.29-.77.94-.95 1.13-.17.2-.35.22-.64.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.35.43-.53.14-.18.19-.31.29-.5.1-.19.05-.36-.02-.51-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.97 2.43.03 1.43 1.03 2.81 1.18 3.01.15.2 2.03 3.1 4.93 4.23.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.12.56-.08 1.71-.7 1.95-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34z" />
+            </svg>
+            Whatsup
           </a>
-        </p>
+        </div>
       </form>
     </>
   );
