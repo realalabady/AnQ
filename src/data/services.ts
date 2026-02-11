@@ -1,4 +1,4 @@
-import { Cpu, Code2, Smartphone, Zap, Globe } from "lucide-react";
+import { Cpu, Code2, Smartphone, Zap, Globe, ShoppingCart } from "lucide-react";
 
 export const COMPANY = {
   name: "ANQ",
@@ -41,6 +41,13 @@ export const SERVICES = [
     description:
       "Fast, beautiful, conversion-focused websites that represent your brand and drive results.",
     icon: Globe,
+  },
+  {
+    id: "e-store",
+    title: "E-Store",
+    description:
+      "Complete e-commerce solutions with secure payments, inventory management, and seamless shopping experiences.",
+    icon: ShoppingCart,
   },
 ];
 

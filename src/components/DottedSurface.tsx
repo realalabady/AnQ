@@ -1,5 +1,6 @@
 import type { ComponentProps } from "react";
 import { useEffect, useRef, useState } from "react";
+import { useTheme } from "next-themes";
 import * as THREE from "three";
 
 type DottedSurfaceProps = Omit<ComponentProps<"div">, "ref">;
@@ -23,27 +24,17 @@ export function DottedSurface({
 }: DottedSurfaceProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<SceneRefs | null>(null);
-  const [theme, setTheme] = useState<"light" | "dark">(() => {
-    if (typeof window === "undefined") return "dark";
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  });
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (event: MediaQueryListEvent) => {
-      setTheme(event.matches ? "dark" : "light");
-    };
-
-    media.addEventListener("change", handleChange);
-    return () => media.removeEventListener("change", handleChange);
+    setMounted(true);
   }, []);
 
+  const theme = mounted ? resolvedTheme : "dark";
+
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || !mounted) return;
 
     const SEPARATION = 150;
     const AMOUNTX = 40;
@@ -172,7 +163,7 @@ export function DottedSurface({
         }
       }
     };
-  }, [theme]);
+  }, [theme, mounted]);
 
   return (
     <div

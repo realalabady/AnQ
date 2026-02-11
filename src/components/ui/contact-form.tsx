@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
-import { SERVICES, COMPANY } from "@/data/services";
 import { sendContactEmail, type ContactFormData } from "@/lib/email";
 import { cn } from "@/lib/utils";
 import { CheckCircle, X } from "lucide-react";
@@ -16,7 +15,7 @@ function SuccessModal({ onClose }: { onClose: () => void }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-background/80 backdrop-blur-sm"
       onClick={onClose}
     >
       <motion.div
@@ -24,12 +23,12 @@ function SuccessModal({ onClose }: { onClose: () => void }) {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.9, y: 20 }}
         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-        className="relative w-full max-w-md bg-black border border-white/20 rounded-2xl p-8 text-center shadow-[0_0_50px_rgba(255,255,255,0.1)]"
+        className="relative w-full max-w-md bg-card border border-border rounded-2xl p-8 text-center shadow-lg"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-white/50 hover:text-white transition cursor-pointer"
+          className="absolute top-4 right-4 text-foreground/50 hover:text-foreground transition cursor-pointer"
         >
           <X className="h-5 w-5" />
         </button>
@@ -38,15 +37,15 @@ function SuccessModal({ onClose }: { onClose: () => void }) {
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.2, type: "spring", damping: 15 }}
-          className="mx-auto mb-6 w-16 h-16 rounded-full bg-white/10 flex items-center justify-center"
+          className="mx-auto mb-6 w-16 h-16 rounded-full bg-foreground/10 flex items-center justify-center"
         >
-          <CheckCircle className="h-8 w-8 text-white" />
+          <CheckCircle className="h-8 w-8 text-foreground" />
         </motion.div>
 
-        <h3 className="text-2xl font-bold text-white mb-3">
+        <h3 className="text-2xl font-bold text-foreground mb-3">
           Message Received!
         </h3>
-        <p className="text-white/60 mb-6">
+        <p className="text-foreground/60 mb-6">
           Thank you for reaching out. We've received your message and will be in
           touch ASAP!
         </p>
@@ -55,7 +54,7 @@ function SuccessModal({ onClose }: { onClose: () => void }) {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           onClick={onClose}
-          className="w-full py-3 rounded-xl bg-white text-black font-semibold hover:bg-white/90 transition cursor-pointer"
+          className="w-full py-3 rounded-xl bg-foreground text-background font-semibold hover:bg-foreground/90 transition cursor-pointer"
         >
           Got it
         </motion.button>
@@ -95,7 +94,7 @@ export function ContactForm({ className }: { className?: string }) {
   };
 
   const inputClass =
-    "w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-white/40 focus:outline-none focus:border-white/30 transition";
+    "w-full px-4 py-3 rounded-xl bg-foreground/5 border border-border text-foreground placeholder:text-foreground/40 focus:outline-none focus:border-foreground/30 transition";
 
   return (
     <>
@@ -194,13 +193,13 @@ export function ContactForm({ className }: { className?: string }) {
           disabled={status === "sending"}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="w-full py-3 rounded-xl bg-white text-black font-semibold hover:bg-white/90 disabled:opacity-50 transition cursor-pointer"
+          className="w-full py-3 rounded-xl bg-foreground text-background font-semibold hover:bg-foreground/90 disabled:opacity-50 transition cursor-pointer"
         >
           {status === "sending" ? "Sending..." : "Send Message"}
         </motion.button>
 
         <div className="flex flex-col items-center pt-4 gap-2">
-          <span className="text-white text-lm mb-6">
+          <span className="text-foreground text-lm mb-6">
             or reach out to us through Whatsup
           </span>
           <a

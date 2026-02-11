@@ -1,4 +1,5 @@
-import * as React from "react";
+"use client";
+
 import {
   Select,
   SelectTrigger,
@@ -6,6 +7,9 @@ import {
   SelectContent,
   SelectItem,
   SelectIcon,
+  SelectItemText,
+  SelectViewport,
+  SelectPortal,
 } from "@radix-ui/react-select";
 import { ChevronDown } from "lucide-react";
 import { SERVICES } from "@/data/services";
@@ -27,26 +31,31 @@ export function ServiceSelect({
           <ChevronDown className="h-5 w-5 text-white/60 ml-auto" />
         </SelectIcon>
       </SelectTrigger>
-      <SelectContent
-        className="bg-black border border-white/10 rounded-xl shadow-xl text-white w-[var(--radix-select-trigger-width)] min-w-0"
-        style={{ minWidth: 0 }}
-      >
-        {SERVICES.map((s) => (
-          <SelectItem
-            key={s.id}
-            value={s.title}
-            className="px-4 py-2 cursor-pointer hover:bg-white/10"
-          >
-            {s.title}
-          </SelectItem>
-        ))}
-        <SelectItem
-          value="Other"
-          className="px-4 py-2 cursor-pointer hover:bg-white/10"
+      <SelectPortal>
+        <SelectContent
+          className="bg-black border border-white/10 rounded-xl shadow-xl text-white z-50 overflow-hidden"
+          position="popper"
+          sideOffset={4}
         >
-          Other
-        </SelectItem>
-      </SelectContent>
+          <SelectViewport className="p-1">
+            {SERVICES.map((s) => (
+              <SelectItem
+                key={s.id}
+                value={s.title}
+                className="px-4 py-2 cursor-pointer hover:bg-white/10 outline-none rounded-lg data-[highlighted]:bg-white/10"
+              >
+                <SelectItemText>{s.title}</SelectItemText>
+              </SelectItem>
+            ))}
+            <SelectItem
+              value="Other"
+              className="px-4 py-2 cursor-pointer hover:bg-white/10 outline-none rounded-lg data-[highlighted]:bg-white/10"
+            >
+              <SelectItemText>Other</SelectItemText>
+            </SelectItem>
+          </SelectViewport>
+        </SelectContent>
+      </SelectPortal>
     </Select>
   );
 }

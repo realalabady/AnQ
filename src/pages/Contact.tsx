@@ -3,7 +3,6 @@ import { DottedSurface } from "@/components/ui/dotted-surface";
 import { ContactForm } from "@/components/ui/contact-form";
 import { NavBar } from "@/components/ui/tubelight-navbar";
 import { Home, User, Briefcase, FolderOpen, Mail } from "lucide-react";
-import { COMPANY } from "@/data/services";
 
 export default function Contact() {
   const navItems = [
@@ -25,10 +24,10 @@ export default function Contact() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl sm:text-5xl font-black text-white mb-3">
+          <h1 className="text-4xl sm:text-5xl font-black text-foreground mb-3">
             Let's Talk
           </h1>
-          <p className="text-white/60 mb-8">
+          <p className="text-foreground/60 mb-8">
             Have a project in mind? Get in touch and we'll get back to you
             within 24 hours.
           </p>

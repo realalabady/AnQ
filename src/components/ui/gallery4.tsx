@@ -55,26 +55,26 @@ const Gallery4 = ({
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-8 flex flex-col gap-4 md:mb-14 md:flex-row md:items-end md:justify-between lg:mb-16">
           <div className="flex flex-col gap-4">
-            <p className="text-sm uppercase tracking-[0.3em] text-white/60">
+            <p className="text-sm uppercase tracking-[0.3em] text-foreground/60">
               Featured Work
             </p>
-            <h2 className="text-3xl font-bold text-white sm:text-4xl">
+            <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
               {title}
             </h2>
-            <p className="max-w-lg text-white/60">{description}</p>
+            <p className="max-w-lg text-foreground/60">{description}</p>
           </div>
           <div className="flex shrink-0 gap-2">
             <button
               onClick={() => carouselApi?.scrollPrev()}
               disabled={!canScrollPrev}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/60 bg-white/40 text-white shadow-[0_0_12px_rgba(255,255,255,0.25)] transition-all hover:bg-white/50 hover:shadow-[0_0_18px_rgba(255,255,255,0.35)] disabled:opacity-40"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-foreground/10 text-foreground shadow-sm transition-all hover:bg-foreground/20 disabled:opacity-40"
             >
               <ArrowLeft className="h-5 w-5" />
             </button>
             <button
               onClick={() => carouselApi?.scrollNext()}
               disabled={!canScrollNext}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/60 bg-white/40 text-white shadow-[0_0_12px_rgba(255,255,255,0.25)] transition-all hover:bg-white/50 hover:shadow-[0_0_18px_rgba(255,255,255,0.35)] disabled:opacity-40"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-foreground/10 text-foreground shadow-sm transition-all hover:bg-foreground/20 disabled:opacity-40"
             >
               <ArrowRight className="h-5 w-5" />
             </button>
@@ -135,8 +135,8 @@ const Gallery4 = ({
               key={index}
               className={`h-3 w-3 rounded-full transition-all ${
                 currentSlide === index
-                  ? "bg-white scale-110"
-                  : "bg-white/30 hover:bg-white/50"
+                  ? "bg-foreground scale-110"
+                  : "bg-foreground/30 hover:bg-foreground/50"
               }`}
               onClick={() => carouselApi?.scrollTo(index)}
               aria-label={`Go to slide ${index + 1}`}

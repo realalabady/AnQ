@@ -6,10 +6,43 @@ import { NavBar } from "../components/ui/tubelight-navbar";
 import { Briefcase, Home as HomeIcon, User, Wrench, Mail } from "lucide-react";
 import { TextScramble } from "../components/ui/text-scramble";
 import { motion } from "framer-motion";
-import { Timeline } from "../components/ui/timeline";
-import { Gallery4 } from "../components/ui/gallery4";
-import { ABOUT, SERVICES, PORTFOLIO } from "../data/services";
+import { LogoCloud } from "../components/ui/logo-cloud";
+import { ABOUT, SERVICES } from "../data/services";
 import { StarButton } from "../components/ui/star-button";
+
+import linkLogo from "../assets/link.jpeg";
+import moongardenLogo from "../assets/moongarden.jpeg";
+import sofraLogo from "../assets/sofra.jpeg";
+import tebaateLogo from "../assets/tebaate.jpeg";
+import vclincLogo from "../assets/Vclinc.jpeg";
+import virtualclinicLogo from "../assets/virtualclinic.png";
+
+const logos = [
+  {
+    src: linkLogo,
+    alt: "Link",
+  },
+  {
+    src: moongardenLogo,
+    alt: "Moongarden",
+  },
+  {
+    src: sofraLogo,
+    alt: "Sofra",
+  },
+  {
+    src: tebaateLogo,
+    alt: "Tebaate",
+  },
+  {
+    src: vclincLogo,
+    alt: "VClinc",
+  },
+  {
+    src: virtualclinicLogo,
+    alt: "Virtual Clinic",
+  },
+];
 
 export default function Home() {
   const [scrambleDone, setScrambleDone] = useState(false);
@@ -31,16 +64,16 @@ export default function Home() {
         {/* Hero Section */}
         <main
           id="home"
-          className="flex flex-1 flex-col items-start justify-center px-6 pt-24 sm:pt-32"
+          className="flex flex-1 flex-col items-start justify-center px-8 sm:px-12 lg:px-16 pt-24 sm:pt-32"
         >
           <div className="w-full text-left">
             <div className="grid w-full gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
               <div className="max-w-4xl lg:col-span-2">
-                <h1 className="font-black text-white text-4xl sm:text-6xl lg:text-7xl leading-tight tracking-tight text-left">
+                <h1 className="font-black text-foreground text-4xl sm:text-6xl lg:text-7xl leading-tight tracking-tight text-left">
                   {scrambleDone ? (
                     <>
                       SOFTWARE THAT MOVES{" "}
-                      <span className="text-[#9A9A9A]">BUSINESSES</span>{" "}
+                      <span className="text-muted-foreground">BUSINESSES</span>{" "}
                       FORWARD.
                     </>
                   ) : (
@@ -55,7 +88,7 @@ export default function Home() {
                     </TextScramble>
                   )}
                 </h1>
-                <p className="mt-6 text-[#7A7A7A] text-base sm:text-lg leading-relaxed text-left">
+                <p className="mt-8 text-muted-foreground text-lg sm:text-xl lg:text-2xl leading-relaxed text-left max-w-3xl">
                   A team of engineers, designers, and product strategists
                   building exceptional digital experiences for ambitious
                   startups and enterprises. We create the systems that power
@@ -230,20 +263,20 @@ export default function Home() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <p className="text-sm uppercase tracking-[0.3em] text-white/60">
+            <p className="text-sm uppercase tracking-[0.3em] text-foreground/60">
               Who We Are
             </p>
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-              About <span className="text-[#9A9A9A]">ANQ</span>
+            <h2 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
+              About <span className="text-muted-foreground">ANQ</span>
             </h2>
-            <h3 className="mt-6 text-xl font-semibold text-white/90">
+            <h3 className="mt-6 text-xl font-semibold text-foreground/90">
               {ABOUT.headline}
             </h3>
             <div className="mt-4 space-y-4">
               {ABOUT.paragraphs.map((para, idx) => (
                 <p
                   key={idx}
-                  className="text-base leading-relaxed text-white/70"
+                  className="text-base leading-relaxed text-foreground/70"
                 >
                   {para}
                 </p>
@@ -253,14 +286,14 @@ export default function Home() {
               {ABOUT.values.map((v) => (
                 <div
                   key={v.word}
-                  className="rounded-xl border border-white/10 bg-white/5 px-5 py-3 backdrop-blur"
+                  className="rounded-xl border border-border bg-foreground/5 px-5 py-3 backdrop-blur"
                 >
-                  <p className="font-semibold text-white">{v.word}</p>
-                  <p className="text-xs text-white/50">{v.tagline}</p>
+                  <p className="font-semibold text-foreground">{v.word}</p>
+                  <p className="text-xs text-foreground/50">{v.tagline}</p>
                 </div>
               ))}
             </div>
-            <p className="mt-8 text-lg font-medium text-white/80 italic">
+            <p className="mt-8 text-lg font-medium text-foreground/80 italic">
               {ABOUT.closing}
             </p>
           </motion.div>
@@ -275,11 +308,11 @@ export default function Home() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <p className="text-sm uppercase tracking-[0.3em] text-white/60">
+            <p className="text-sm uppercase tracking-[0.3em] text-foreground/60">
               What We Do
             </p>
-            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
-              Our <span className="text-[#9A9A9A]">Services</span>
+            <h2 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
+              Our <span className="text-muted-foreground">Services</span>
             </h2>
             <div className="mt-12 flex flex-wrap justify-center gap-6">
               {SERVICES.map((service, idx) => {
@@ -287,7 +320,7 @@ export default function Home() {
                 return (
                   <motion.div
                     key={service.title}
-                    className="group w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur transition-colors hover:border-white/20 hover:bg-white/10"
+                    className="group w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] rounded-2xl border border-border bg-foreground/5 p-6 backdrop-blur transition-colors hover:border-foreground/20 hover:bg-foreground/10"
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
@@ -300,10 +333,10 @@ export default function Home() {
                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <Icon size={24} />
                     </div>
-                    <h3 className="text-lg font-semibold text-white">
+                    <h3 className="text-lg font-semibold text-foreground">
                       {service.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-white/60">
+                    <p className="mt-2 text-sm leading-relaxed text-foreground/60">
                       {service.description}
                     </p>
                   </motion.div>
@@ -313,14 +346,24 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* Portfolio/Work Section */}
-        <div id="work">
-          <Gallery4
-            title="Our Portfolio"
-            description="Explore the digital solutions we've crafted for our clients."
-            items={PORTFOLIO}
+        {/* Logo Cloud Section */}
+        <section id="work" className="relative mx-auto max-w-3xl py-16">
+          <div
+            aria-hidden="true"
+            className="-z-10 -top-1/2 -translate-x-1/2 pointer-events-none absolute left-1/2 h-[120vmin] w-[120vmin] rounded-b-full bg-[radial-gradient(ellipse_at_center,hsl(var(--foreground)/0.1),transparent_50%)] blur-[30px]"
           />
-        </div>
+
+          <h2 className="mb-5 text-center font-medium text-foreground text-xl tracking-tight md:text-3xl">
+            <span className="text-muted-foreground">Trusted by experts.</span>
+            <br />
+            <span className="font-semibold">Used by the leaders.</span>
+          </h2>
+          <div className="mx-auto my-5 h-px max-w-sm bg-border [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
+
+          <LogoCloud logos={logos} />
+
+          <div className="mt-5 h-px bg-border [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
+        </section>
 
         <div className="mt-auto pt-12">
           <Footer />

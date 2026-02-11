@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 export default function NotFoundPage() {
   return (
-    <div className="w-full h-screen bg-black overflow-x-hidden flex justify-center items-center relative">
+    <div className="w-full h-screen bg-background overflow-x-hidden flex justify-center items-center relative">
       <MessageDisplay />
       <CharactersAnimation />
       <CircleAnimation />
@@ -24,21 +24,23 @@ function MessageDisplay() {
   return (
     <div
       className="absolute flex flex-col justify-center items-center w-[90%] h-[90%]"
-      style={{ zIndex: 20, color: "#000000" }}
+      style={{ zIndex: 20 }}
     >
       <div
         className={`flex flex-col items-center transition-opacity duration-500 ${
           isVisible ? "opacity-100" : "opacity-0"
         }`}
       >
-        <div className="text-[35px] font-semibold m-[1%]">Page Not Found</div>
-        <div className="text-[80px] font-bold m-[1%]">404</div>
-        <div className="text-[15px] w-1/2 min-w-[40%] text-center opacity-70 m-[1%]">
+        <div className="text-[35px] font-semibold m-[1%] text-foreground">
+          Page Not Found
+        </div>
+        <div className="text-[80px] font-bold m-[1%] text-foreground">404</div>
+        <div className="text-[15px] w-1/2 min-w-[40%] text-center opacity-70 m-[1%] text-foreground">
           The page you are looking for might have been removed, had its name
           changed, or is temporarily unavailable.
         </div>
         <div className="flex gap-6 mt-8">
-          <button className="group bg-black text-white border-2 border-black/60 hover:bg-black/90 transition-all duration-300 ease-in-out px-6 py-2 h-auto text-base font-medium flex items-center gap-2 hover:scale-105">
+          <button className="group bg-foreground text-background border-2 border-foreground/60 hover:bg-foreground/90 transition-all duration-300 ease-in-out px-6 py-2 h-auto text-base font-medium flex items-center gap-2 hover:scale-105">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -56,7 +58,7 @@ function MessageDisplay() {
             </svg>
             Go Back
           </button>
-          <button className="group bg-black text-white hover:bg-black/90 transition-all duration-300 ease-in-out px-6 py-2 h-auto text-base font-medium flex items-center gap-2 hover:scale-105">
+          <button className="group bg-foreground text-background hover:bg-foreground/90 transition-all duration-300 ease-in-out px-6 py-2 h-auto text-base font-medium flex items-center gap-2 hover:scale-105">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -208,7 +210,7 @@ interface Circulo {
 
 function CircleAnimation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const requestIdRef = useRef<number>();
+  const requestIdRef = useRef<number>(undefined);
   const timerRef = useRef(0);
   const circulosRef = useRef<Circulo[]>([]);
 
