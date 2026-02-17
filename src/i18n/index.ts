@@ -1,0 +1,34 @@
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+import LanguageDetector from "i18next-browser-languagedetector";
+
+import en from "./locales/en.json";
+import ar from "./locales/ar.json";
+
+const resources = {
+  en: { translation: en },
+  ar: { translation: ar },
+};
+
+i18n
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init({
+    resources,
+    lng: "ar",
+    fallbackLng: "ar",
+    interpolation: {
+      escapeValue: false,
+    },
+    detection: {
+      order: ["localStorage", "navigator"],
+      caches: ["localStorage"],
+    },
+  });
+
+// Set initial document direction based on language
+const currentLang = i18n.language || "ar";
+document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+document.documentElement.lang = currentLang;
+
+export default i18n;

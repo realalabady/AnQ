@@ -1,0 +1,108 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "work": "Work",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "SOFTWARE THAT MOVES BUSINESSES FORWARD.",
+    "subtitle": "A team of engineers, designers, and product strategists building exceptional digital experiences for ambitious startups and enterprises. We create the systems that power your success.",
+    "cta": "Contact Us"
+  },
+  "about": {
+    "label": "Who We Are",
+    "title": "About",
+    "titleHighlight": "ANQ",
+    "headline": "At ANQ, we don't build software just to build software.",
+    "paragraphs": [
+      "We build it because too many businesses are still wasting time on things machines should already be handling. Manual processes. Disconnected systems. Repetitive tasks. Complexity where there should be clarity.",
+      "So we created ANQ to change that.",
+      "We're a team of engineers, designers, and product thinkers who go deep into the technical layers — architecture, automation, integrations, and scalable systems — to create digital solutions that actually make life easier.",
+      "Our work isn't about flashy features. It's about building technology that works quietly in the background, removing friction, streamlining operations, and helping people focus on what matters most.",
+      "From startups launching bold ideas to enterprises modernizing their infrastructure, we design and develop products that are smart, fast, and built for the future."
+    ],
+    "values": {
+      "automation": {
+        "word": "Automation",
+        "tagline": "Technology that eliminates friction"
+      },
+      "nexus": {
+        "word": "Nexus",
+        "tagline": "The bridge between business and technology"
+      },
+      "quantum": {
+        "word": "Quantum",
+        "tagline": "Futuristic, high-performance, next-level tech"
+      }
+    },
+    "closing": "ANQ — Engineering the systems behind progress."
+  },
+  "services": {
+    "label": "What We Do",
+    "title": "Services that drive results",
+    "items": {
+      "ai-automation": {
+        "title": "AI Solution & Workflow Automation",
+        "description": "Intelligent systems that automate your workflows, eliminate manual processes, and let you focus on growth."
+      },
+      "system-application": {
+        "title": "System Application",
+        "description": "Enterprise-grade applications built for performance, reliability, and seamless integration."
+      },
+      "mobile-app": {
+        "title": "iOS & Android Application",
+        "description": "Native and cross-platform mobile apps that deliver exceptional experiences users love."
+      },
+      "google-services": {
+        "title": "Google Services",
+        "description": "Google Cloud, Workspace, Maps, and Analytics integration to power your digital infrastructure."
+      },
+      "website-profile": {
+        "title": "Website & Profile",
+        "description": "Fast, beautiful, conversion-focused websites that represent your brand and drive results."
+      },
+      "e-store": {
+        "title": "E-Store",
+        "description": "Complete e-commerce solutions with secure payments, inventory management, and seamless shopping experiences."
+      }
+    },
+    "other": "Other"
+  },
+  "work": {
+    "trustedBy": "Trusted by experts.",
+    "usedBy": "Used by the leaders."
+  },
+  "contact": {
+    "title": "Let's Build Something Amazing",
+    "subtitle": "Ready to transform your ideas into reality? Get in touch and let's discuss your project.",
+    "form": {
+      "name": "Your name",
+      "email": "Email address",
+      "phone": "Phone number",
+      "service": "Select a service",
+      "message": "Tell us about your project...",
+      "messageRequired": "Please describe what you need (required)...",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "whatsapp": "or reach out to us through WhatsApp",
+      "whatsappButton": "WhatsApp"
+    },
+    "errors": {
+      "service": "Please select a service.",
+      "general": "Something went wrong. Please try again."
+    },
+    "success": {
+      "title": "Message Received!",
+      "message": "Thank you for reaching out. We've received your message and will be in touch ASAP!",
+      "button": "Got it"
+    }
+  },
+  "footer": {
+    "description": "Building exceptional digital experiences for ambitious startups and enterprises.",
+    "services": "Services",
+    "contact": "Contact",
+    "rights": "All rights reserved."
+  }
+}

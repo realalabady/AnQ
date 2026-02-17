@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { DottedSurface } from "../components/ui/dotted-surface";
 import { Footer } from "../components/ui/footer-section";
 import { NavBar } from "../components/ui/tubelight-navbar";
@@ -7,7 +8,7 @@ import { Briefcase, Home as HomeIcon, User, Wrench, Mail } from "lucide-react";
 import { TextScramble } from "../components/ui/text-scramble";
 import { motion } from "framer-motion";
 import { LogoCloud } from "../components/ui/logo-cloud";
-import { ABOUT, SERVICES } from "../data/services";
+import { SERVICES } from "../data/services";
 import { StarButton } from "../components/ui/star-button";
 
 import linkLogo from "../assets/link.jpeg";
@@ -47,35 +48,38 @@ const logos = [
 export default function Home() {
   const [scrambleDone, setScrambleDone] = useState(false);
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
 
   const navItems = [
-    { name: "Home", url: "#home", icon: HomeIcon },
-    { name: "About", url: "#about", icon: User },
-    { name: "Services", url: "#services", icon: Wrench },
-    { name: "Work", url: "#work", icon: Briefcase },
-    { name: "Contact", url: "/contact", icon: Mail },
+    { name: t("nav.home"), url: "#home", icon: HomeIcon },
+    { name: t("nav.about"), url: "#about", icon: User },
+    { name: t("nav.services"), url: "#services", icon: Wrench },
+    { name: t("nav.work"), url: "#work", icon: Briefcase },
+    { name: t("nav.contact"), url: "/contact", icon: Mail },
   ];
 
   return (
     <>
       <DottedSurface />
       <NavBar items={navItems} />
-      <div className="app-content relative flex min-h-svh flex-col">
+      <div
+        className={`app-content relative flex min-h-svh flex-col ${isRTL ? "rtl" : "ltr"}`}
+      >
         {/* Hero Section */}
         <main
           id="home"
-          className="flex flex-1 flex-col items-start justify-center px-8 sm:px-12 lg:px-16 pt-24 sm:pt-32"
+          className={`flex flex-1 flex-col items-start justify-center px-8 sm:px-12 lg:px-16 pt-24 sm:pt-32 ${isRTL ? "text-right" : "text-left"}`}
+          dir={isRTL ? "rtl" : "ltr"}
         >
-          <div className="w-full text-left">
+          <div className="w-full">
             <div className="grid w-full gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-              <div className="max-w-4xl lg:col-span-2">
-                <h1 className="font-black text-foreground text-4xl sm:text-6xl lg:text-7xl leading-tight tracking-tight text-left">
+              <div
+                className={`max-w-4xl lg:col-span-2 ${isRTL ? "mr-0 ml-auto" : ""}`}
+              >
+                <h1 className="font-black text-foreground text-4xl sm:text-6xl lg:text-7xl leading-tight tracking-tight">
                   {scrambleDone ? (
-                    <>
-                      SOFTWARE THAT MOVES{" "}
-                      <span className="text-muted-foreground">BUSINESSES</span>{" "}
-                      FORWARD.
-                    </>
+                    t("hero.title")
                   ) : (
                     <TextScramble
                       as="span"
@@ -84,20 +88,19 @@ export default function Home() {
                       duration={2.2}
                       onScrambleComplete={() => setScrambleDone(true)}
                     >
-                      {"SOFTWARE THAT MOVES BUSINESSES FORWARD."}
+                      {t("hero.title")}
                     </TextScramble>
                   )}
                 </h1>
-                <p className="mt-8 text-muted-foreground text-lg sm:text-xl lg:text-2xl leading-relaxed text-left max-w-3xl">
-                  A team of engineers, designers, and product strategists
-                  building exceptional digital experiences for ambitious
-                  startups and enterprises. We create the systems that power
-                  your success.
+                <p
+                  className={`mt-8 text-muted-foreground text-lg sm:text-xl lg:text-2xl leading-relaxed max-w-3xl ${isRTL ? "mr-0 ml-auto" : ""}`}
+                >
+                  {t("hero.subtitle")}
                 </p>
               </div>
 
               <motion.div
-                className="w-full lg:col-start-2 lg:row-start-2 flex justify-end items-center py-8 pr-36 lg:pr-58"
+                className={`w-full lg:col-start-2 lg:row-start-2 flex ${isRTL ? "justify-start pl-36 lg:pl-58" : "justify-end pr-36 lg:pr-58"} items-center py-8`}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
@@ -108,7 +111,7 @@ export default function Home() {
                   className="rounded-full w-44 h-44 text-xl font-bold"
                   onClick={() => navigate("/contact")}
                 >
-                  Contact Us
+                  {t("hero.cta")}
                 </StarButton>
               </motion.div>
 
@@ -255,52 +258,70 @@ export default function Home() {
         </main>
 
         {/* About Section */}
-        <section id="about" className="px-6 py-24 sm:py-32">
+        <section
+          id="about"
+          className="px-6 py-24 sm:py-32"
+          dir={isRTL ? "rtl" : "ltr"}
+        >
           <motion.div
-            className="mx-auto max-w-4xl"
+            className="mx-auto max-w-4xl text-center"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <p className="text-sm uppercase tracking-[0.3em] text-foreground/60">
-              Who We Are
+              {t("about.label")}
             </p>
             <h2 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
-              About <span className="text-muted-foreground">ANQ</span>
+              {t("about.title")}{" "}
+              <span className="text-muted-foreground">
+                {t("about.titleHighlight")}
+              </span>
             </h2>
             <h3 className="mt-6 text-xl font-semibold text-foreground/90">
-              {ABOUT.headline}
+              {t("about.headline")}
             </h3>
             <div className="mt-4 space-y-4">
-              {ABOUT.paragraphs.map((para, idx) => (
-                <p
-                  key={idx}
-                  className="text-base leading-relaxed text-foreground/70"
-                >
-                  {para}
-                </p>
-              ))}
+              {(t("about.paragraphs", { returnObjects: true }) as string[]).map(
+                (para, idx) => (
+                  <p
+                    key={idx}
+                    className="text-base leading-relaxed text-foreground/70"
+                  >
+                    {para}
+                  </p>
+                ),
+              )}
             </div>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              {ABOUT.values.map((v) => (
+            <div
+              className={`mt-8 flex flex-wrap gap-4 ${isRTL ? "justify-center" : "justify-center"}`}
+            >
+              {["automation", "nexus", "quantum"].map((key) => (
                 <div
-                  key={v.word}
+                  key={key}
                   className="rounded-xl border border-border bg-foreground/5 px-5 py-3 backdrop-blur"
                 >
-                  <p className="font-semibold text-foreground">{v.word}</p>
-                  <p className="text-xs text-foreground/50">{v.tagline}</p>
+                  <p className="font-semibold text-foreground">
+                    {t(`about.values.${key}.word`)}
+                  </p>
+                  <p className="text-xs text-foreground/50">
+                    {t(`about.values.${key}.tagline`)}
+                  </p>
                 </div>
               ))}
             </div>
             <p className="mt-8 text-lg font-medium text-foreground/80 italic">
-              {ABOUT.closing}
+              {t("about.closing")}
             </p>
           </motion.div>
         </section>
 
         {/* Services Section */}
-        <section id="services" className="px-6 py-24 sm:py-32">
+        <section
+          id="services"
+          className={`px-6 py-24 sm:py-32 ${isRTL ? "text-right" : ""}`}
+        >
           <motion.div
             className="mx-auto max-w-6xl"
             initial={{ opacity: 0, y: 24 }}
@@ -309,18 +330,18 @@ export default function Home() {
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
             <p className="text-sm uppercase tracking-[0.3em] text-foreground/60">
-              What We Do
+              {t("services.label")}
             </p>
             <h2 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
-              Our <span className="text-muted-foreground">Services</span>
+              {t("services.title")}
             </h2>
             <div className="mt-12 flex flex-wrap justify-center gap-6">
               {SERVICES.map((service, idx) => {
                 const Icon = service.icon;
                 return (
                   <motion.div
-                    key={service.title}
-                    className="group w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] rounded-2xl border border-border bg-foreground/5 p-6 backdrop-blur transition-colors hover:border-foreground/20 hover:bg-foreground/10"
+                    key={service.id}
+                    className={`group w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] rounded-2xl border border-border bg-foreground/5 p-6 backdrop-blur transition-colors hover:border-foreground/20 hover:bg-foreground/10 ${isRTL ? "text-right" : ""}`}
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
@@ -330,14 +351,16 @@ export default function Home() {
                       delay: idx * 0.1,
                     }}
                   >
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <div
+                      className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary ${isRTL ? "mr-auto" : ""}`}
+                    >
                       <Icon size={24} />
                     </div>
                     <h3 className="text-lg font-semibold text-foreground">
-                      {service.title}
+                      {t(`services.items.${service.id}.title`)}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-foreground/60">
-                      {service.description}
+                      {t(`services.items.${service.id}.description`)}
                     </p>
                   </motion.div>
                 );
@@ -354,11 +377,11 @@ export default function Home() {
           />
 
           <h2 className="mb-5 text-center font-medium text-foreground text-xl tracking-tight md:text-3xl">
-            <span className="text-muted-foreground">Trusted by experts.</span>
+            {/* <span className="text-muted-foreground">{t("work.trustedBy")}</span> */}
             <br />
-            <span className="font-semibold">Used by the leaders.</span>
+            <span className="font-semibold">{t("work.usedBy")}</span>
           </h2>
-          <div className="mx-auto my-5 h-px max-w-sm bg-border [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
+          <div className="mx-auto my-5 h-px max-w-sm pt-2 bg-border [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
 
           <LogoCloud logos={logos} />
 

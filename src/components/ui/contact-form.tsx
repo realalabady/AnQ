@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "framer-motion";
 import { sendContactEmail, type ContactFormData } from "@/lib/email";
 import { cn } from "@/lib/utils";
@@ -10,6 +11,8 @@ import { ServiceSelect } from "@/components/ui/service-select";
 import { Controller } from "react-hook-form";
 
 function SuccessModal({ onClose }: { onClose: () => void }) {
+  const { t } = useTranslation();
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -43,11 +46,10 @@ function SuccessModal({ onClose }: { onClose: () => void }) {
         </motion.div>
 
         <h3 className="text-2xl font-bold text-foreground mb-3">
-          Message Received!
+          {t("contact.success.title")}
         </h3>
         <p className="text-foreground/60 mb-6">
-          Thank you for reaching out. We've received your message and will be in
-          touch ASAP!
+          {t("contact.success.message")}
         </p>
 
         <motion.button
@@ -56,7 +58,7 @@ function SuccessModal({ onClose }: { onClose: () => void }) {
           onClick={onClose}
           className="w-full py-3 rounded-xl bg-foreground text-background font-semibold hover:bg-foreground/90 transition cursor-pointer"
         >
-          Got it
+          {t("contact.success.button")}
         </motion.button>
       </motion.div>
     </motion.div>
@@ -64,6 +66,8 @@ function SuccessModal({ onClose }: { onClose: () => void }) {
 }
 
 export function ContactForm({ className }: { className?: string }) {
+  const { t, i18n } = useTranslation();
+  const isRTL = i18n.language === "ar";
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle",
   );
@@ -107,11 +111,12 @@ export function ContactForm({ className }: { className?: string }) {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className={cn("space-y-5", className)}
+        dir={isRTL ? "rtl" : "ltr"}
       >
         <div>
           <input
             type="text"
-            placeholder="Your name"
+            placeholder={t("contact.form.name")}
             {...register("name", { required: true, minLength: 2 })}
             className={cn(inputClass, errors.name && "border-red-500/50")}
             disabled={status === "sending"}
@@ -121,7 +126,7 @@ export function ContactForm({ className }: { className?: string }) {
         <div>
           <input
             type="email"
-            placeholder="Email address"
+            placeholder={t("contact.form.email")}
             {...register("email", {
               required: true,
               pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -134,7 +139,7 @@ export function ContactForm({ className }: { className?: string }) {
         <div>
           <input
             type="tel"
-            placeholder="Phone number"
+            placeholder={t("contact.form.phone")}
             {...register("phone", { required: true, minLength: 10 })}
             className={cn(inputClass, errors.phone && "border-red-500/50")}
             disabled={status === "sending"}
@@ -156,7 +161,7 @@ export function ContactForm({ className }: { className?: string }) {
           />
           {errors.service && (
             <p className="text-red-400 text-sm mt-2">
-              Please select a service.
+              {t("contact.errors.service")}
             </p>
           )}
         </div>
@@ -165,8 +170,8 @@ export function ContactForm({ className }: { className?: string }) {
           <textarea
             placeholder={
               selectedService === "Other"
-                ? "Please describe what you need (required)..."
-                : "Tell us about your project..."
+                ? t("contact.form.messageRequired")
+                : t("contact.form.message")
             }
             rows={5}
             {...register("message", {
@@ -183,9 +188,7 @@ export function ContactForm({ className }: { className?: string }) {
         </div>
 
         {status === "error" && (
-          <p className="text-red-400 text-sm">
-            Something went wrong. Please try again.
-          </p>
+          <p className="text-red-400 text-sm">{t("contact.errors.general")}</p>
         )}
 
         <motion.button
@@ -195,12 +198,14 @@ export function ContactForm({ className }: { className?: string }) {
           whileTap={{ scale: 0.98 }}
           className="w-full py-3 rounded-xl bg-foreground text-background font-semibold hover:bg-foreground/90 disabled:opacity-50 transition cursor-pointer"
         >
-          {status === "sending" ? "Sending..." : "Send Message"}
+          {status === "sending"
+            ? t("contact.form.sending")
+            : t("contact.form.submit")}
         </motion.button>
 
         <div className="flex flex-col items-center pt-4 gap-2">
           <span className="text-foreground text-lm mb-6">
-            or reach out to us through Whatsup
+            {t("contact.form.whatsapp")}
           </span>
           <a
             href="https://wa.me/966511567407"
@@ -217,7 +222,7 @@ export function ContactForm({ className }: { className?: string }) {
             >
               <path d="M16 3C9.373 3 4 8.373 4 15c0 2.385.832 4.584 2.236 6.37L4.062 29.25a1 1 0 0 0 1.312 1.312l7.88-2.174A12.94 12.94 0 0 0 16 27c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 22c-1.77 0-3.44-.46-4.89-1.26l-.35-.2-4.68 1.29 1.29-4.68-.2-.35A9.96 9.96 0 0 1 6 15c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm5.29-7.71c-.29-.15-1.71-.84-1.98-.94-.27-.1-.47-.15-.67.15-.2.29-.77.94-.95 1.13-.17.2-.35.22-.64.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.35.43-.53.14-.18.19-.31.29-.5.1-.19.05-.36-.02-.51-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.97 2.43.03 1.43 1.03 2.81 1.18 3.01.15.2 2.03 3.1 4.93 4.23.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.12.56-.08 1.71-.7 1.95-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34z" />
             </svg>
-            Whatsup
+            {t("contact.form.whatsappButton")}
           </a>
         </div>
       </form>

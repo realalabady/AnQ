@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { LanguageSwitcher } from "./language-switcher";
 
 interface NavItem {
   name: string;
@@ -89,7 +90,7 @@ export function NavBar({ items, className }: NavBarProps) {
         className,
       )}
     >
-      <div className="flex items-center gap-3 bg-background/5 border border-border backdrop-blur-lg py-1 px-2 rounded-full shadow-lg">
+      <div className="flex items-center gap-4 bg-background/5 border border-border backdrop-blur-lg py-2 px-4 rounded-full shadow-lg">
         <a
           href="/"
           onClick={(e) => {
@@ -97,7 +98,7 @@ export function NavBar({ items, className }: NavBarProps) {
             navigate("/");
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
-          className="px-3 text-[28px] font-black tracking-tight text-white hover:text-white/80 transition"
+          className="px-4 text-[28px] font-black tracking-tight text-white hover:text-white/80 transition"
         >
           AnQ
         </a>
@@ -141,6 +142,7 @@ export function NavBar({ items, className }: NavBarProps) {
             </a>
           );
         })}
+        <LanguageSwitcher />
       </div>
     </div>
   );
