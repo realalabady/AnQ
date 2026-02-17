@@ -64,20 +64,18 @@ export default function Home() {
       <DottedSurface />
       <NavBar items={navItems} />
       <div
-        className={`app-content relative flex min-h-svh flex-col ${isRTL ? "rtl" : "ltr"}`}
+        className={`app-content relative flex min-h-svh w-full max-w-full flex-col overflow-x-hidden items-center ${isRTL ? "rtl" : "ltr"}`}
       >
         {/* Hero Section */}
         <main
           id="home"
-          className={`flex flex-1 flex-col items-start justify-center px-8 sm:px-12 lg:px-16 pt-24 sm:pt-32 ${isRTL ? "text-right" : "text-left"}`}
+          className={`w-full flex flex-1 flex-col items-center justify-center px-4 sm:px-8 lg:px-16 pt-24 sm:pt-32 ${isRTL ? "text-right" : "text-left"}`}
           dir={isRTL ? "rtl" : "ltr"}
         >
-          <div className="w-full">
-            <div className="grid w-full gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-              <div
-                className={`max-w-4xl lg:col-span-2 ${isRTL ? "mr-0 ml-auto" : ""}`}
-              >
-                <h1 className="font-black text-foreground text-4xl sm:text-6xl lg:text-7xl leading-tight tracking-tight">
+          <div className="w-full max-w-6xl">
+            <div className="flex flex-col gap-8 lg:gap-10">
+              <div className="w-full">
+                <h1 className="font-black text-foreground text-2xl sm:text-4xl lg:text-6xl xl:text-7xl leading-tight tracking-tight">
                   {scrambleDone ? (
                     t("hero.title")
                   ) : (
@@ -92,15 +90,13 @@ export default function Home() {
                     </TextScramble>
                   )}
                 </h1>
-                <p
-                  className={`mt-8 text-muted-foreground text-lg sm:text-xl lg:text-2xl leading-relaxed max-w-3xl ${isRTL ? "mr-0 ml-auto" : ""}`}
-                >
+                <p className="mt-4 sm:mt-6 text-muted-foreground text-sm sm:text-base lg:text-xl leading-relaxed max-w-3xl">
                   {t("hero.subtitle")}
                 </p>
               </div>
 
               <motion.div
-                className={`w-full lg:col-start-2 lg:row-start-2 flex ${isRTL ? "justify-start pl-36 lg:pl-58" : "justify-end pr-36 lg:pr-58"} items-center py-8`}
+                className="w-full flex justify-center lg:justify-end items-center py-4 sm:py-8"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
@@ -108,12 +104,15 @@ export default function Home() {
               >
                 <StarButton
                   lightColor="#FAFAFA"
-                  className="rounded-full w-44 h-44 text-xl font-bold"
+                  className="rounded-full w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 text-base sm:text-lg md:text-xl font-bold"
                   onClick={() => navigate("/contact")}
                 >
                   {t("hero.cta")}
                 </StarButton>
               </motion.div>
+            </div>
+          </div>
+        </main>
 
               {/* TODO: Re-enable Timeline section later
               <motion.aside
@@ -253,14 +252,11 @@ export default function Home() {
                 />
               </motion.aside>
               */}
-            </div>
-          </div>
-        </main>
 
         {/* About Section */}
         <section
           id="about"
-          className="px-6 py-24 sm:py-32"
+          className="w-full px-4 sm:px-6 py-16 sm:py-24 overflow-hidden"
           dir={isRTL ? "rtl" : "ltr"}
         >
           <motion.div
@@ -270,48 +266,46 @@ export default function Home() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <p className="text-sm uppercase tracking-[0.3em] text-foreground/60">
+            <p className="text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] text-foreground/60">
               {t("about.label")}
             </p>
-            <h2 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
+            <h2 className="mt-2 sm:mt-3 text-xl sm:text-2xl md:text-3xl font-bold text-foreground lg:text-4xl">
               {t("about.title")}{" "}
               <span className="text-muted-foreground">
                 {t("about.titleHighlight")}
               </span>
             </h2>
-            <h3 className="mt-6 text-xl font-semibold text-foreground/90">
+            <h3 className="mt-3 sm:mt-4 text-base sm:text-lg font-semibold text-foreground/90">
               {t("about.headline")}
             </h3>
-            <div className="mt-4 space-y-4">
+            <div className="mt-3 sm:mt-4 space-y-2 sm:space-y-3">
               {(t("about.paragraphs", { returnObjects: true }) as string[]).map(
                 (para, idx) => (
                   <p
                     key={idx}
-                    className="text-base leading-relaxed text-foreground/70"
+                    className="text-xs sm:text-sm leading-relaxed text-foreground/70"
                   >
                     {para}
                   </p>
                 ),
               )}
             </div>
-            <div
-              className={`mt-8 flex flex-wrap gap-4 ${isRTL ? "justify-center" : "justify-center"}`}
-            >
+            <div className="mt-4 sm:mt-6 flex flex-wrap justify-center gap-2 sm:gap-3">
               {["automation", "nexus", "quantum"].map((key) => (
                 <div
                   key={key}
-                  className="rounded-xl border border-border bg-foreground/5 px-5 py-3 backdrop-blur"
+                  className="rounded-lg sm:rounded-xl border border-border bg-foreground/5 px-2 sm:px-4 py-1.5 sm:py-2 backdrop-blur"
                 >
-                  <p className="font-semibold text-foreground">
+                  <p className="font-semibold text-foreground text-xs sm:text-sm">
                     {t(`about.values.${key}.word`)}
                   </p>
-                  <p className="text-xs text-foreground/50">
+                  <p className="text-[10px] sm:text-xs text-foreground/50">
                     {t(`about.values.${key}.tagline`)}
                   </p>
                 </div>
               ))}
             </div>
-            <p className="mt-8 text-lg font-medium text-foreground/80 italic">
+            <p className="mt-4 sm:mt-6 text-sm sm:text-base font-medium text-foreground/80 italic">
               {t("about.closing")}
             </p>
           </motion.div>
@@ -320,7 +314,7 @@ export default function Home() {
         {/* Services Section */}
         <section
           id="services"
-          className={`px-6 py-24 sm:py-32 ${isRTL ? "text-right" : ""}`}
+          className={`w-full px-4 sm:px-6 py-16 sm:py-24 overflow-hidden ${isRTL ? "text-right" : ""}`}
         >
           <motion.div
             className="mx-auto max-w-6xl"
@@ -329,19 +323,19 @@ export default function Home() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            <p className="text-sm uppercase tracking-[0.3em] text-foreground/60">
+            <p className="text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] text-foreground/60">
               {t("services.label")}
             </p>
-            <h2 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
+            <h2 className="mt-2 sm:mt-3 text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
               {t("services.title")}
             </h2>
-            <div className="mt-12 flex flex-wrap justify-center gap-6">
+            <div className="mt-6 sm:mt-10 flex flex-wrap justify-center gap-2 sm:gap-4">
               {SERVICES.map((service, idx) => {
                 const Icon = service.icon;
                 return (
                   <motion.div
                     key={service.id}
-                    className={`group w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] rounded-2xl border border-border bg-foreground/5 p-6 backdrop-blur transition-colors hover:border-foreground/20 hover:bg-foreground/10 ${isRTL ? "text-right" : ""}`}
+                    className={`group w-full sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-12px)] rounded-lg sm:rounded-xl border border-border bg-foreground/5 p-3 sm:p-4 backdrop-blur transition-colors hover:border-foreground/20 hover:bg-foreground/10 ${isRTL ? "text-right" : ""}`}
                     initial={{ opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.3 }}
@@ -352,14 +346,15 @@ export default function Home() {
                     }}
                   >
                     <div
-                      className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary ${isRTL ? "mr-auto" : ""}`}
+                      className={`mb-2 sm:mb-3 flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-md sm:rounded-lg bg-primary/10 text-primary ${isRTL ? "mr-auto" : ""}`}
                     >
-                      <Icon size={24} />
+                      <Icon size={16} className="sm:hidden" />
+                      <Icon size={20} className="hidden sm:block" />
                     </div>
-                    <h3 className="text-lg font-semibold text-foreground">
+                    <h3 className="text-sm sm:text-base font-semibold text-foreground">
                       {t(`services.items.${service.id}.title`)}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-foreground/60">
+                    <p className="mt-1 sm:mt-1.5 text-[11px] sm:text-xs leading-relaxed text-foreground/60">
                       {t(`services.items.${service.id}.description`)}
                     </p>
                   </motion.div>
@@ -370,25 +365,20 @@ export default function Home() {
         </section>
 
         {/* Logo Cloud Section */}
-        <section id="work" className="relative mx-auto max-w-3xl py-16">
-          <div
-            aria-hidden="true"
-            className="-z-10 -top-1/2 -translate-x-1/2 pointer-events-none absolute left-1/2 h-[120vmin] w-[120vmin] rounded-b-full bg-[radial-gradient(ellipse_at_center,hsl(var(--foreground)/0.1),transparent_50%)] blur-[30px]"
-          />
+        <section id="work" className="relative w-full px-4 sm:px-6 py-8 sm:py-12 overflow-hidden">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="mb-3 sm:mb-4 text-center font-medium text-foreground text-base sm:text-lg md:text-2xl tracking-tight">
+              <span className="font-semibold">{t("work.usedBy")}</span>
+            </h2>
+            <div className="mx-auto my-3 sm:my-4 h-px max-w-xs sm:max-w-sm bg-border" style={{maskImage: 'linear-gradient(to right, transparent, black, transparent)'}} />
 
-          <h2 className="mb-5 text-center font-medium text-foreground text-xl tracking-tight md:text-3xl">
-            {/* <span className="text-muted-foreground">{t("work.trustedBy")}</span> */}
-            <br />
-            <span className="font-semibold">{t("work.usedBy")}</span>
-          </h2>
-          <div className="mx-auto my-5 h-px max-w-sm pt-2 bg-border [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
+            <LogoCloud logos={logos} />
 
-          <LogoCloud logos={logos} />
-
-          <div className="mt-5 h-px bg-border [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
+            <div className="mt-4 sm:mt-5 h-px bg-border" style={{maskImage: 'linear-gradient(to right, transparent, black, transparent)'}} />
+          </div>
         </section>
 
-        <div className="mt-auto pt-12">
+        <div className="w-full mt-auto pt-12">
           <Footer />
         </div>
       </div>

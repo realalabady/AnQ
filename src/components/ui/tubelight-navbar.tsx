@@ -85,12 +85,12 @@ export function NavBar({ items, className }: NavBarProps) {
   return (
     <div
       className={cn(
-        "fixed top-0 left-1/2 -translate-x-1/2 z-50 pt-6 transition-transform duration-300",
+        "fixed top-0 left-1/2 -translate-x-1/2 z-50 pt-4 px-2 w-full max-w-fit transition-transform duration-300",
         isVisible ? "translate-y-0" : "-translate-y-full",
         className,
       )}
     >
-      <div className="flex items-center gap-4 bg-background/5 border border-border backdrop-blur-lg py-2 px-4 rounded-full shadow-lg">
+      <div className="flex items-center gap-1 sm:gap-2 md:gap-4 bg-background/5 border border-border backdrop-blur-lg py-2 px-2 sm:px-3 md:px-4 rounded-full shadow-lg">
         <a
           href="/"
           onClick={(e) => {
@@ -98,7 +98,7 @@ export function NavBar({ items, className }: NavBarProps) {
             navigate("/");
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
-          className="px-4 text-[28px] font-black tracking-tight text-white hover:text-white/80 transition"
+          className="px-2 sm:px-3 md:px-4 text-xl sm:text-2xl md:text-[28px] font-black tracking-tight text-white hover:text-white/80 transition"
         >
           AnQ
         </a>
@@ -112,7 +112,7 @@ export function NavBar({ items, className }: NavBarProps) {
               href={item.url}
               onClick={(e) => handleClick(e, item)}
               className={cn(
-                "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
+                "relative cursor-pointer text-sm font-semibold px-2 sm:px-3 md:px-6 py-2 rounded-full transition-colors",
                 "text-foreground/80 hover:text-primary",
                 isActive && "bg-muted text-primary",
               )}

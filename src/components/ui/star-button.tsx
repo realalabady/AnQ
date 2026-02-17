@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import type { ReactNode, CSSProperties } from "react";
-import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
 interface StarBackgroundProps {
@@ -401,16 +400,10 @@ export function StarButton({
   ...props
 }: StarButtonProps) {
   const pathRef = useRef<HTMLButtonElement>(null);
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const isDark = mounted ? resolvedTheme === "dark" : true;
-  const bgColor = isDark ? backgroundColor : lightModeBackgroundColor;
-  const orbitLightColor = isDark ? lightColor : "#333333";
+  // Always use dark mode colors since we force dark theme
+  const bgColor = backgroundColor;
+  const orbitLightColor = lightColor;
 
   useEffect(() => {
     if (pathRef.current) {
@@ -464,13 +457,13 @@ export function StarButton({
         }
       />
       <div
-        className="absolute inset-0 dark:border-white/15 border-black/10 z-[4] overflow-hidden rounded-[inherit] dark:text-black text-white"
+        className="absolute inset-0 border-white/15 z-[4] overflow-hidden rounded-[inherit] text-black"
         style={{ borderWidth: "var(--border-width)" }}
         aria-hidden="true"
       >
         <StarBackground color={bgColor} />
       </div>
-      <span className="z-10 relative bg-gradient-to-t dark:from-white dark:to-neutral-500 from-neutral-800 to-neutral-600 inline-block text-transparent bg-clip-text">
+      <span className="z-10 relative bg-gradient-to-t from-white to-neutral-500 inline-block text-transparent bg-clip-text">
         {children}
       </span>
     </button>

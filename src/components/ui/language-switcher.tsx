@@ -17,10 +17,10 @@ export function LanguageSwitcher() {
   return (
     <button
       onClick={toggleLanguage}
-      className="flex items-center gap-2 px-3 py-2 rounded-full bg-foreground/5 border border-border hover:bg-foreground/10 transition-colors text-foreground text-sm font-medium cursor-pointer"
+      className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full bg-foreground/5 border border-border hover:bg-foreground/10 transition-colors text-foreground text-xs sm:text-sm font-medium cursor-pointer"
       aria-label="Switch language"
     >
-      <Globe className="w-4 h-4" />
+      <Globe className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
       <span>{i18n.language === "ar" ? "EN" : "AR"}</span>
     </button>
   );

@@ -22,7 +22,7 @@ export default function Contact() {
       <DottedSurface />
       <NavBar items={navItems} />
       <div
-        className={`relative min-h-svh flex items-center justify-center px-6 py-32 ${isRTL ? "rtl" : "ltr"}`}
+        className={`relative min-h-svh w-full max-w-full flex items-center justify-center px-4 sm:px-6 py-24 sm:py-32 overflow-x-hidden ${isRTL ? "rtl" : "ltr"}`}
       >
         <motion.div
           className="w-full max-w-md"
@@ -31,7 +31,7 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
         >
           <h1
-            className={`text-4xl sm:text-5xl font-black text-foreground mb-3 ${isRTL ? "text-right" : ""}`}
+            className={`text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-3 ${isRTL ? "text-right" : ""}`}
           >
             {t("contact.title")}
           </h1>
