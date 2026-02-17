@@ -1,19 +1,20 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
-
-dotenv.config({ path: ".env.local" });
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 8080;
 
-app.use(cors());
+// CORS - allow your Vercel domain
+app.use(cors({
+  origin: ["https://anq.sa", "https://www.anq.sa", "http://localhost:5173"],
+  methods: ["POST"],
+}));
 app.use(express.json());
 
 app.post("/api/send-email", async (req, res) => {
   const { name, email, phone, service, message } = req.body;
 
-  const apiKey = process.env.VITE_RESEND_API_SECRET;
+  const apiKey = process.env.RESEND_API_KEY;
 
   if (!apiKey) {
     return res.status(500).json({ error: "Email service not configured" });
@@ -39,7 +40,7 @@ app.post("/api/send-email", async (req, res) => {
           <p><strong>Service:</strong> ${service}</p>
           <hr />
           <p><strong>Message:</strong></p>
-          <p style="white-space: pre-wrap;">${message}</p>
+          <p style="white-space: pre-wrap;">${message || "No message provided"}</p>
         `,
       }),
     });
@@ -59,6 +60,11 @@ app.post("/api/send-email", async (req, res) => {
   }
 });
 
+// Health check
+app.get("/", (req, res) => {
+  res.json({ status: "ok", service: "ANQ Email Server" });
+});
+
 app.listen(PORT, () => {
-  console.log(`✉️  Email server running on http://localhost:${PORT}`);
+  console.log(`✉️  Email server running on port ${PORT}`);
 });

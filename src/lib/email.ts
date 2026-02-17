@@ -6,9 +6,12 @@ export type ContactFormData = {
   message: string;
 };
 
+// Update CLOUD_RUN_URL after deploying to Cloud Run
+const CLOUD_RUN_URL = "https://anq-email-server-xxxxx-xx.a.run.app";
+
 const API_URL = import.meta.env.DEV
   ? "http://localhost:3001/api/send-email"
-  : "/api/send-email";
+  : `${CLOUD_RUN_URL}/api/send-email`;
 
 export async function sendContactEmail(data: ContactFormData) {
   const response = await fetch(API_URL, {

@@ -1,19 +1,12 @@
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
+export default async function handler(req, res) {
+  // Only allow POST
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
 
-dotenv.config({ path: ".env.local" });
-
-const app = express();
-const PORT = 3001;
-
-app.use(cors());
-app.use(express.json());
-
-app.post("/api/send-email", async (req, res) => {
   const { name, email, phone, service, message } = req.body;
 
-  const apiKey = process.env.VITE_RESEND_API_SECRET;
+  const apiKey = process.env.RESEND_API_KEY;
 
   if (!apiKey) {
     return res.status(500).json({ error: "Email service not configured" });
@@ -39,7 +32,7 @@ app.post("/api/send-email", async (req, res) => {
           <p><strong>Service:</strong> ${service}</p>
           <hr />
           <p><strong>Message:</strong></p>
-          <p style="white-space: pre-wrap;">${message}</p>
+          <p style="white-space: pre-wrap;">${message || "No message provided"}</p>
         `,
       }),
     });
@@ -52,13 +45,9 @@ app.post("/api/send-email", async (req, res) => {
 
     const data = await response.json();
     console.log("Email sent:", data);
-    res.json(data);
+    return res.status(200).json(data);
   } catch (error) {
     console.error("Server error:", error);
-    res.status(500).json({ error: "Failed to send email" });
+    return res.status(500).json({ error: "Failed to send email" });
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`✉️  Email server running on http://localhost:${PORT}`);
-});
+}

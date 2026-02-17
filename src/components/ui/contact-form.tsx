@@ -208,7 +208,7 @@ export function ContactForm({ className }: { className?: string }) {
             {t("contact.form.whatsapp")}
           </span>
           <a
-            href="https://wa.me/966511567407"
+            href="https://wa.me/966511567408"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex w-full justify-center items-center gap-2 px-6 py-2 rounded-xl bg-[hsl(var(--primary))] hover:bg-[hsl(var(--primary)/.85)] !text-black font-semibold text-base shadow transition focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
