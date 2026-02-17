@@ -4,10 +4,16 @@ import cors from "cors";
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// CORS - allow your Vercel domain
+// CORS - allow your domains
 app.use(cors({
-  origin: ["https://anq.sa", "https://www.anq.sa", "http://localhost:5173"],
-  methods: ["POST"],
+  origin: [
+    "https://anq.sa",
+    "https://www.anq.sa",
+    "https://anq-software.com",
+    "https://www.anq-software.com",
+    "http://localhost:5173"
+  ],
+  methods: ["POST", "GET", "OPTIONS"],
 }));
 app.use(express.json());
 
