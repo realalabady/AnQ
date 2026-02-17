@@ -5,16 +5,18 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // CORS - allow your domains
-app.use(cors({
-  origin: [
-    "https://anq.sa",
-    "https://www.anq.sa",
-    "https://anq-software.com",
-    "https://www.anq-software.com",
-    "http://localhost:5173"
-  ],
-  methods: ["POST", "GET", "OPTIONS"],
-}));
+app.use(
+  cors({
+    origin: [
+      "https://anq.sa",
+      "https://www.anq.sa",
+      "https://anq-software.com",
+      "https://www.anq-software.com",
+      "http://localhost:5173",
+    ],
+    methods: ["POST", "GET", "OPTIONS"],
+  }),
+);
 app.use(express.json());
 
 app.post("/api/send-email", async (req, res) => {
@@ -34,7 +36,7 @@ app.post("/api/send-email", async (req, res) => {
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        from: "contact@anq.sa",
+        from: "contact@anq-software.com",
         to: "anq.software@gmail.com",
         reply_to: email,
         subject: `New inquiry from ${name} — ${service}`,
