@@ -7,7 +7,7 @@ export type ContactFormData = {
 };
 
 // Cloud Run email server URL
-const CLOUD_RUN_URL = "https://anq-413084465153.europe-west1.run.app";
+const CLOUD_RUN_URL = "https://anq-1044825593780.europe-west1.run.app";
 
 const API_URL = import.meta.env.DEV
   ? "http://localhost:3001/api/send-email"
