@@ -1,7 +1,7 @@
 import { Cpu, Code2, Smartphone, Zap, Globe, ShoppingCart } from "lucide-react";
 
 export const COMPANY = {
-  name: "ANQ",
+  name: "Cypher",
   email: "anq.software@gmail.com",
   phone: "0511567407",
 };
@@ -100,10 +100,10 @@ export const PORTFOLIO = [
 ];
 
 export const ABOUT = {
-  headline: "At ANQ, we don't build software just to build software.",
+  headline: "At Cypher, we don't build software just to build software.",
   paragraphs: [
     "We build it because too many businesses are still wasting time on things machines should already be handling. Manual processes. Disconnected systems. Repetitive tasks. Complexity where there should be clarity.",
-    "So we created ANQ to change that.",
+    "So we created Cypher to change that.",
     "We're a team of engineers, designers, and product thinkers who go deep into the technical layers — architecture, automation, integrations, and scalable systems — to create digital solutions that actually make life easier.",
     "Our work isn't about flashy features. It's about building technology that works quietly in the background, removing friction, streamlining operations, and helping people focus on what matters most.",
     "From startups launching bold ideas to enterprises modernizing their infrastructure, we design and develop products that are smart, fast, and built for the future.",
@@ -116,5 +116,5 @@ export const ABOUT = {
       tagline: "futuristic, high-performance, next-level tech",
     },
   ],
-  closing: "ANQ — Engineering the systems behind progress.",
+  closing: "Cypher — Engineering the systems behind progress.",
 };

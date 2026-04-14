@@ -114,7 +114,7 @@ export default function Home() {
           </div>
         </main>
 
-              {/* TODO: Re-enable Timeline section later
+        {/* TODO: Re-enable Timeline section later
               <motion.aside
                 className="w-full rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur lg:col-start-2 lg:row-start-2"
                 initial={{ opacity: 0, y: 16 }}
@@ -365,16 +365,31 @@ export default function Home() {
         </section>
 
         {/* Logo Cloud Section */}
-        <section id="work" className="relative w-full px-4 sm:px-6 py-8 sm:py-12 overflow-hidden">
+        <section
+          id="work"
+          className="relative w-full px-4 sm:px-6 py-8 sm:py-12 overflow-hidden"
+        >
           <div className="max-w-3xl mx-auto">
             <h2 className="mb-3 sm:mb-4 text-center font-medium text-foreground text-base sm:text-lg md:text-2xl tracking-tight">
               <span className="font-semibold">{t("work.usedBy")}</span>
             </h2>
-            <div className="mx-auto my-3 sm:my-4 h-px max-w-xs sm:max-w-sm bg-border" style={{maskImage: 'linear-gradient(to right, transparent, black, transparent)'}} />
+            <div
+              className="mx-auto my-3 sm:my-4 h-px max-w-xs sm:max-w-sm bg-border"
+              style={{
+                maskImage:
+                  "linear-gradient(to right, transparent, black, transparent)",
+              }}
+            />
 
             <LogoCloud logos={logos} />
 
-            <div className="mt-4 sm:mt-5 h-px bg-border" style={{maskImage: 'linear-gradient(to right, transparent, black, transparent)'}} />
+            <div
+              className="mt-4 sm:mt-5 h-px bg-border"
+              style={{
+                maskImage:
+                  "linear-gradient(to right, transparent, black, transparent)",
+              }}
+            />
           </div>
         </section>
 

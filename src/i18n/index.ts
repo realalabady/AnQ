@@ -15,8 +15,8 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: "ar",
-    fallbackLng: "ar",
+    lng: "en",
+    fallbackLng: "en",
     interpolation: {
       escapeValue: false,
     },
@@ -27,7 +27,7 @@ i18n
   });
 
 // Set initial document direction based on language
-const currentLang = i18n.language || "ar";
+const currentLang = i18n.language || "en";
 document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
 document.documentElement.lang = currentLang;
 

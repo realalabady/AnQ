@@ -91,17 +91,6 @@ export function NavBar({ items, className }: NavBarProps) {
       )}
     >
       <div className="flex items-center gap-1 sm:gap-2 md:gap-4 bg-background/5 border border-border backdrop-blur-lg py-2 px-2 sm:px-3 md:px-4 rounded-full shadow-lg">
-        <a
-          href="/"
-          onClick={(e) => {
-            e.preventDefault();
-            navigate("/");
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
-          className="px-2 sm:px-3 md:px-4 text-xl sm:text-2xl md:text-[28px] font-black tracking-tight text-white hover:text-white/80 transition"
-        >
-          AnQ
-        </a>
         {items.map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.name;

@@ -30,7 +30,11 @@ export function Footer() {
       <div className="w-full max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <AnimatedContainer className="flex flex-col items-center md:items-start gap-2">
-            <span className="text-2xl font-bold text-foreground">ANQ</span>
+            <img
+              src="/Cypher Green Logo.png"
+              alt="Cypher"
+              className="h-10 w-auto rounded-md"
+            />
             <p className="text-muted-foreground text-sm text-center md:text-start max-w-xs">
               {t("footer.description")}
             </p>
@@ -55,7 +59,7 @@ export function Footer() {
           className="mt-8 pt-6 border-t border-foreground/10"
         >
           <p className="text-muted-foreground text-sm text-center">
-            © {new Date().getFullYear()} ANQ. {t("footer.rights")}
+            © {new Date().getFullYear()} Cypher. {t("footer.rights")}
           </p>
         </AnimatedContainer>
       </div>
