@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { LogoCloud } from "../components/ui/logo-cloud";
 import { SERVICES } from "../data/services";
 import { StarButton } from "../components/ui/star-button";
+import { styleCypher } from "../lib/utils";
 
 import linkLogo from "../assets/link.jpeg";
 import moongardenLogo from "../assets/moongarden.jpeg";
@@ -77,7 +78,10 @@ export default function Home() {
               <div className="w-full">
                 <h1 className="font-black text-foreground text-2xl sm:text-4xl lg:text-6xl xl:text-7xl leading-tight tracking-tight">
                   {scrambleDone ? (
-                    t("hero.title")
+                    <>
+                      {t("hero.title").replace(/FORWARD\.?/, "")}
+                      <span className="text-[#1d9b47]">FORWARD.</span>
+                    </>
                   ) : (
                     <TextScramble
                       as="span"
@@ -272,11 +276,11 @@ export default function Home() {
             <h2 className="mt-2 sm:mt-3 text-xl sm:text-2xl md:text-3xl font-bold text-foreground lg:text-4xl">
               {t("about.title")}{" "}
               <span className="text-muted-foreground">
-                {t("about.titleHighlight")}
+                {styleCypher(t("about.titleHighlight"))}
               </span>
             </h2>
             <h3 className="mt-3 sm:mt-4 text-base sm:text-lg font-semibold text-foreground/90">
-              {t("about.headline")}
+              {styleCypher(t("about.headline"))}
             </h3>
             <div className="mt-3 sm:mt-4 space-y-2 sm:space-y-3">
               {(t("about.paragraphs", { returnObjects: true }) as string[]).map(
@@ -285,7 +289,7 @@ export default function Home() {
                     key={idx}
                     className="text-xs sm:text-sm leading-relaxed text-foreground/70"
                   >
-                    {para}
+                    {styleCypher(para)}
                   </p>
                 ),
               )}
@@ -306,7 +310,7 @@ export default function Home() {
               ))}
             </div>
             <p className="mt-4 sm:mt-6 text-sm sm:text-base font-medium text-foreground/80 italic">
-              {t("about.closing")}
+              {styleCypher(t("about.closing"))}
             </p>
           </motion.div>
         </section>

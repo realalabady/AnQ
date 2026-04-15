@@ -9,12 +9,12 @@ function App() {
     <BrowserRouter>
       <a
         href="/"
-        className="fixed top-4 left-4 sm:top-6 sm:left-6 z-50 hover:opacity-80 transition"
+        className="fixed top-0 left-2 sm:left-12 z-50 hover:opacity-80 transition"
       >
         <img
-          src="/Cypher rb.png"
+          src="/Cypher white-rb.png"
           alt="Cypher"
-          className="h-16 sm:h-20 md:h-24 w-auto brightness-150 drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]"
+          className="h-24 sm:h-28 md:h-36 w-auto"
         />
       </a>
       <Routes>

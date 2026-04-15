@@ -2,6 +2,7 @@
 import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import { useTranslation } from "react-i18next";
+import { styleCypher } from "@/lib/utils";
 import {
   FacebookIcon,
   InstagramIcon,
@@ -31,9 +32,9 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <AnimatedContainer className="flex flex-col items-center md:items-start gap-2">
             <img
-              src="/Cypher Green Logo.png"
+              src="/Cypher white-rb.png"
               alt="Cypher"
-              className="h-10 w-auto rounded-md"
+              className="h-20 sm:h-24 w-auto"
             />
             <p className="text-muted-foreground text-sm text-center md:text-start max-w-xs">
               {t("footer.description")}
@@ -59,7 +60,7 @@ export function Footer() {
           className="mt-8 pt-6 border-t border-foreground/10"
         >
           <p className="text-muted-foreground text-sm text-center">
-            © {new Date().getFullYear()} Cypher. {t("footer.rights")}
+            © {new Date().getFullYear()} {styleCypher("Cypher")}. {t("footer.rights")}
           </p>
         </AnimatedContainer>
       </div>

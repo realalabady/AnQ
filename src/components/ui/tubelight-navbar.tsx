@@ -85,7 +85,7 @@ export function NavBar({ items, className }: NavBarProps) {
   return (
     <div
       className={cn(
-        "fixed top-0 left-1/2 -translate-x-1/2 z-50 pt-4 px-2 w-full max-w-fit transition-transform duration-300",
+        "fixed top-0 left-1/2 -translate-x-1/2 sm:left-1/2 sm:-translate-x-1/2 z-50 pt-4 px-2 w-auto max-w-fit transition-transform duration-300 ml-8 sm:ml-0",
         isVisible ? "translate-y-0" : "-translate-y-full",
         className,
       )}
