@@ -9,16 +9,18 @@ function App() {
     <BrowserRouter>
       <a
         href="/"
-        className="fixed top-4 left-2 sm:left-12 z-50 hover:opacity-80 transition"
+        className="fixed top-4 sm:top-0 left-2 sm:left-12 z-50 hover:opacity-80 transition"
       >
-        <picture>
-          <source media="(min-width: 640px)" srcSet="/Cypher horizen.png" />
-          <img
-            src="/Cypher mobile.png"
-            alt="Cypher"
-            className="h-16 sm:h-2 md:h-36 w-auto"
-          />
-        </picture>
+        <img
+          src="/Cypher mobile.png"
+          alt="Cypher"
+          className="h-16 w-auto block sm:hidden"
+        />
+        <img
+          src="/Cypher horizen.png"
+          alt="Cypher"
+          className="h-28 md:h-36 w-auto hidden sm:block"
+        />
       </a>
       <Routes>
         <Route path="/" element={<Home />} />
