@@ -32,7 +32,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <AnimatedContainer className="flex flex-col items-center md:items-start gap-2">
             <img
-              src="/Cypher white-rb.png"
+              src="/Cypher horizen.jpeg"
               alt="Cypher"
               className="h-20 sm:h-24 w-auto"
             />
@@ -60,7 +60,8 @@ export function Footer() {
           className="mt-8 pt-6 border-t border-foreground/10"
         >
           <p className="text-muted-foreground text-sm text-center">
-            © {new Date().getFullYear()} {styleCypher("Cypher")}. {t("footer.rights")}
+            © {new Date().getFullYear()} {styleCypher("Cypher")}.{" "}
+            {t("footer.rights")}
           </p>
         </AnimatedContainer>
       </div>
