@@ -32,7 +32,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <AnimatedContainer className="flex flex-col items-center md:items-start gap-2">
             <img
-              src="/Cypher horizen.jpeg"
+              src="/Cypher horizen.png"
               alt="Cypher"
               className="h-20 sm:h-24 w-auto"
             />
